@@ -1,1 +1,83 @@
-<p>inventory works!</p>
+<div class="container">
+  <div>
+    <h1>Item Management</h1>
+    <p>Description:</p>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.description"
+      placeholder="Enter item description"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.upc"
+      placeholder="Enter UPC"
+    />
+  </div>
+   <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.styleNum"
+      placeholder="Enter Style Number"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.brand"
+      placeholder="Enter Brand"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.cost"
+      placeholder="Enter Cost"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.price"
+      placeholder="Enter Price"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="item.qty"
+      placeholder="Enter Quantity"
+    />
+  </div>
+@if(editItemId){
+  <button class="btn btn-outline-primary" (click) = "updateItem()">Update</button>
+  <button class="btn btn-outline-secondary" (click) = "resetForm()">Reset</button>
+}
+@else{
+   <div>
+    <button class="btn btn-outline-primary" (click)="addItem()">
+      Add Item
+    </button>
+  </div>
+}
+ 
+  <hr />
+  <div>
+    <h2>List of Items</h2>
+    @for(item of items; track item.id){
+      <p>
+       {{$index + 1}} : {{item.upc}} : {{item.brand}} : {{item.description}} : {{item.styleNum}}  : {{item.cost}} : {{item.price}}
+       <button class="btn btn-primary" (click)="setEditItem(item)">Edit</button>
+       <button class="btn btn-danger" (click)="deleteItem(item.id)">Delete</button>
+      </p>
+    }
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import {collection, collectionData, doc, Firestore, setDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, Firestore, setDoc, updateDoc, deleteDoc} from "@angular/fire/firestore";
 import { Observable } from 'rxjs';
 
 
@@ -11,7 +11,7 @@ price: number,
 cost: number,
 upc: string,
 styleNum: string,
-
+qty: number,
 }
 
 @Injectable({
@@ -32,4 +32,16 @@ export class InventoryServiceService {
     setDoc(userRef, newItem);
   }
   constructor() { }
+
+  updateItem(item:Item){
+    const itemRef = doc(this.firestore, `items/${item.id}`);
+    updateDoc(itemRef, {... item})
+  }
+
+  deleteItem(id:string){
+    const itemRef = doc(this.firestore, `items/${id}`);
+    deleteDoc(itemRef)
+  }
+
+
 }
