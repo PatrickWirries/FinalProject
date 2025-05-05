@@ -1,0 +1,110 @@
+<div class="container">
+  <div>
+    <h1>Item Management</h1>
+
+
+  <div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      
+       @if(editItemId){
+ <h3 class="mb-0">Edit Item</h3>
+}
+@else{
+   <h3 class="mb-0">Add Item</h3>
+
+}
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" id="description" class="form-control" [(ngModel)]="item.description" name="description" placeholder="Enter item description">
+          </div>
+          <div class="col-md-6">
+            <label for="upc" class="form-label">UPC</label>
+            <input type="text" id="upc" class="form-control" [(ngModel)]="item.upc" name="upc" placeholder="Enter UPC">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="styleNum" class="form-label">Style Number</label>
+            <input type="text" id="styleNum" class="form-control" [(ngModel)]="item.styleNum" name="styleNum" placeholder="Enter Style Number">
+          </div>
+          <div class="col-md-6">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" id="brand" class="form-control" [(ngModel)]="item.brand" name="brand" placeholder="Enter Brand">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="cost" class="form-label">Cost</label>
+            <input type="text" id="cost" class="form-control" [(ngModel)]="item.cost" name="cost" placeholder="Enter Cost">
+          </div>
+          <div class="col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" id="price" class="form-control" [(ngModel)]="item.price" name="price" placeholder="Enter Price">
+          </div>
+          <div class="col-md-4">
+            <label for="qty" class="form-label">Quantity</label>
+            <input type="text" id="qty" class="form-control" [(ngModel)]="item.qty" name="qty" placeholder="Enter Quantity">
+          </div>
+        </div>
+
+        @if(editItemId){
+  <button class="btn btn-outline-primary" (click) = "updateItem()">Update</button>
+  <button class="btn btn-outline-secondary" (click) = "resetForm()">Reset</button>
+}
+@else{
+   <div>
+    <button class="btn btn-outline-primary" (click)="addItem()">
+      Add Item
+    </button>
+  </div>
+}
+ 
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h2 class="mb-4">List of Items</h2>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        
+        <th>UPC</th>
+        <th>Brand</th>
+        <th>Description</th>
+        <th>Style Number</th>
+        <th>Cost</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+         @for(item of items; track item.id){
+      <tr>
+        
+        <td>{{ item.upc }}</td>
+        <td>{{ item.brand }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.styleNum }}</td>
+        <td>${{ item.cost }}</td>
+        <td>${{ item.price }}</td>
+        <td>{{ item.qty }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary me-2" (click)="setEditItem(item)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">Delete</button>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
+
