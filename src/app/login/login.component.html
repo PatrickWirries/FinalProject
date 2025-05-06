@@ -1,0 +1,22 @@
+<!--Login Page-->
+<!--To Do:
+
+*Make the password's text type 'Password', as 'text' is for testing purposes
+*Switch form's submission to (submit) instead of (click)
+*Possibly remove 'console.log' from .ts -> Dev tool rather than implementation requirement
+
+-->
+<div class="loginForm">
+    <h1>Welcome! Please Sign In!</h1>
+<form (ngSubmit)="onSubmit()">
+<label for="email">Email</label><br>
+<input type="text" placeholder="Email" name="email"  [(ngModel)] = "email" required>
+<br>
+<br>
+<label for="password">Password</label><br>
+<input type="text" placeholder="Password" name="password" [(ngModel)] = 'password' required>
+<br><br>
+<button class="btn btn-success" type="submit">Sign In!</button>
+</form><br>
+<button class="btn btn-warning" routerLink = 'forgotPass'>Forgot Password</button>
+</div>

@@ -1,0 +1,30 @@
+<header class="header">
+    <!--Logo-->
+    <div class="logo">
+        @if (loggedIn()){
+      <button class = headerbtn routerLink = "dashboard"><img src="toolset.jpg" alt="Logo" class="logo-img" />
+      </button>
+    }
+    @else{
+        <img src="toolset.jpg" alt="Logo" class="logo-img" />
+    }
+    </div>
+
+  
+    <!--Only display additional header details if the page is not 'login' or 'forgotPassword' (Can only see when logged in)-->
+    @if (!isLoginRoute()) {
+    <!--Links-->
+    <nav class="nav-links">
+      <a [routerLink]="'dashboard'" class="nav-link" >Dashboard</a>
+      <a [routerLink]="'inventory'" class="nav-link">Inventory</a> <!--Add correct Inventory route here-->
+      <a [routerLink] = "'schedule'" class="nav-link">Scheduling</a> <!--Add correct Schedule route here-->
+      <a [routerLink] = "'contacts'" class="nav-link">Contacts</a> <!--Add correct Contacts route here here-->
+    </nav>
+  
+
+    <!-- Logout Button -->
+    <div class="logout">
+      <button class="btn btn-danger" (click) = logout()>Logout</button>
+    </div>
+}
+  </header>

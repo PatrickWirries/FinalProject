@@ -1,0 +1,13 @@
+.forgotPassForm{
+    text-align: center;
+    h1{
+        font-weight: bold;
+    }
+}
+.emailBox{
+    width: 250px;
+}
+
+.btn-warning:hover{
+    background-color: goldenrod;
+}
