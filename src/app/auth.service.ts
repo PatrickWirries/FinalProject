@@ -2,16 +2,16 @@ import { Injectable, inject } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, sendPasswordResetEmail } from '@angular/fire/auth';
 import { doc, Firestore, getDoc, collection, query, where, getDocs } from '@angular/fire/firestore';
 import { User } from './user';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router';;
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor() { }
-
+  //onAuthStateChange will prevent refreshing from setting currentUser to null
+  constructor() {}
+  
   private firebaseAuth = inject(Auth);
   private firestore = inject(Firestore);
   private router = inject(Router);
@@ -21,6 +21,7 @@ export class AuthService {
 async login(email: string, password:string): Promise<void>{
 
   try{
+   
 //Sign In and save the UID that matches with the user's login information
 const credential = await signInWithEmailAndPassword(this.firebaseAuth, email, password);
 const uid = credential.user.uid;
@@ -49,6 +50,7 @@ const AppUser: User = {
 // Add the 'role' to local storage
 localStorage.setItem('role', role);
 localStorage.setItem('user', JSON.stringify(AppUser))
+localStorage.setItem('token', 'true');
 
 //Route the user to the dashboard if the user successfully logs in
   this.router.navigate(['/dashboard']);
@@ -87,7 +89,18 @@ resetPassword(email: string){
     .catch(err => alert('Error sending reset link: ' + err.message));
 }
 
+//Return true if the current user is not set to null, else false
 loggedIn(){
-  return this.firebaseAuth.currentUser !== null;
+  return localStorage.getItem('token') == 'true'
+}
+
+//Return True if user is a manager
+isManager(){
+  return localStorage.getItem('role') == "MANAGER";
+}
+
+//Return True if user is an employee
+isEmployee(){
+  return localStorage.getItem('role') == 'EMPLOYEE';
 }
 }
