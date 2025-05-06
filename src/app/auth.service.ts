@@ -9,9 +9,9 @@ import { Router } from '@angular/router';;
   providedIn: 'root'
 })
 export class AuthService {
-  //onAuthStateChange will prevent refreshing from setting currentUser to null
+
   constructor() {}
-  
+
   private firebaseAuth = inject(Auth);
   private firestore = inject(Firestore);
   private router = inject(Router);
@@ -89,7 +89,7 @@ resetPassword(email: string){
     .catch(err => alert('Error sending reset link: ' + err.message));
 }
 
-//Return true if the current user is not set to null, else false
+//Return true if the current user is valid via local storage token
 loggedIn(){
   return localStorage.getItem('token') == 'true'
 }
