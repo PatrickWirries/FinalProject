@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import {collection, collectionData, doc, Firestore, setDoc, updateDoc, deleteDoc} from "@angular/fire/firestore";
 import { Observable } from 'rxjs';
 
@@ -20,6 +20,8 @@ qty: number,
 export class InventoryServiceService {
   private firestore = inject(Firestore);
   private inventoryCollection = collection(this.firestore, 'items');
+
+  searchTerm = signal<string>('');
 
   getInventory(): Observable<Item[]>{
     return collectionData(this.inventoryCollection, ({idField: 'id'})) as Observable<Item[]>

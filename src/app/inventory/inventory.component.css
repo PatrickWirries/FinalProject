@@ -1,0 +1,12 @@
+th {
+    cursor: pointer;
+}
+
+th.sort-asc::after {
+    content: ' ▲';
+  
+}
+
+th.sort-desc::after {
+    content: ' ▼';
+}
