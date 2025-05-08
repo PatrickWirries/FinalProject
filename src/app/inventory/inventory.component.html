@@ -72,39 +72,42 @@
 </div>
 
 <div class="container mt-4">
-  <h2 class="mb-4">List of Items</h2>
-  <table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        
-        <th>UPC</th>
-        <th>Brand</th>
-        <th>Description</th>
-        <th>Style Number</th>
-        <th>Cost</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-         @for(item of items; track item.id){
-      <tr>
-        
-        <td>{{ item.upc }}</td>
-        <td>{{ item.brand }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.styleNum }}</td>
-        <td>${{ item.cost }}</td>
-        <td>${{ item.price }}</td>
-        <td>{{ item.qty }}</td>
-        <td>
-          <button class="btn btn-sm btn-primary me-2" (click)="setEditItem(item)">Edit</button>
-          <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">Delete</button>
-        </td>
-      </tr>
-    }
-    </tbody>
-  </table>
+      <h2 class="mb-4">Inventory</h2>
+      <div>
+        <label for="search" class="form-label">Search: </label>
+        <input type='text' [(ngModel)]='input' (keyup)="sendInput()" />
+      </div>
+      <br>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th (click)="sort('upc')" [class.sort-asc]="sortColumn === 'upc' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'upc' && sortDirection === 'desc'">UPC</th>
+            <th (click)="sort('brand')" [class.sort-asc]="sortColumn === 'brand' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'brand' && sortDirection === 'desc'">Brand</th>
+            <th (click)="sort('description')" [class.sort-asc]="sortColumn === 'description' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'description' && sortDirection === 'desc'">Description</th>
+            <th (click)="sort('styleNum')" [class.sort-asc]="sortColumn === 'styleNum' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'styleNum' && sortDirection === 'desc'">Style Number</th>
+            <th (click)="sort('cost')" [class.sort-asc]="sortColumn === 'cost' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'cost' && sortDirection === 'desc'">Cost</th>
+            <th (click)="sort('price')" [class.sort-asc]="sortColumn === 'price' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'price' && sortDirection === 'desc'">Price</th>
+            <th (click)="sort('qty')" [class.sort-asc]="sortColumn === 'qty' && sortDirection === 'asc'" [class.sort-desc]="sortColumn === 'qty' && sortDirection === 'desc'">Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredItems; track item.id">
+            <td>{{ item.upc }}</td>
+            <td>{{ item.brand }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.styleNum }}</td>
+            <td>${{ item.cost }}</td>
+            <td>${{ item.price }}</td>
+            <td>{{ item.qty }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2" (click)="setEditItem(item)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteItem(item.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
