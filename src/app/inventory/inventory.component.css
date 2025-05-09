@@ -10,3 +10,6 @@ th.sort-asc::after {
 th.sort-desc::after {
     content: ' ▼';
 }
+.invheader{
+    background-color: #1d97cf;
+}
