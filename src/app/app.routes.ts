@@ -39,12 +39,12 @@ export const routes: Routes = [
     path: 'contacts',
     component: ContactsComponent,
     title: 'Contacts',
-    canActivate: [authManagerGuard], // optional: only logged-in users can see it
+    canActivate: [authManagerGuard], //only logged-in managers can see contacts
   },
 
  {path: 'scheduling',
     component: SchedulingComponent,
     title: 'Scheduling',
-    canActivate: [authManagerGuard], // optional: only logged-in users can see it
+    canActivate: [authGuard], //Only logged in users can view scheduling
  }
 ];
