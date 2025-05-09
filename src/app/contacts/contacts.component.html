@@ -1,0 +1,93 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Form Section -->
+    <div class="col-md-4">
+      <h3>{{ editId ? 'Edit Employee' : 'Add Employee' }}</h3>
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            [(ngModel)]="name"
+            name="name"
+            placeholder="Enter name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input
+            type="text"
+            id="phone"
+            class="form-control"
+            [(ngModel)]="phone"
+            name="phone"
+            placeholder="Enter phone"
+          />
+        </div>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="editId ? updateEmployee() : addEmployee()"
+        >
+          {{ editId ? 'Update Employee' : 'Add Employee' }}
+        </button>
+        <button
+          *ngIf="editId"
+          class="btn btn-secondary ms-2"
+          type="button"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+
+    <!-- List Section -->
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees$ | async; trackBy: trackByEmployeeId">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>
+              <button
+                class="btn btn-sm btn-info me-2"
+                (click)="editEmployee(employee)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteEmployee(employee.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
