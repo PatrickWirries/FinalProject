@@ -8,6 +8,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { authGuard } from './auth.guard'; //Return true if logged in
 import { authLoggedInGuard } from './auth-logged-in.guard'; //Return true if not logged in
 import { authManagerGuard } from './auth-manager.guard'; //For routes that are for managers only -> Return true if manager
+import { SchedulingComponent } from './scheduling/scheduling.component';
 
 export const routes: Routes = [
   {
@@ -40,4 +41,10 @@ export const routes: Routes = [
     title: 'Contacts',
     canActivate: [authManagerGuard], // optional: only logged-in users can see it
   },
+
+ {path: 'scheduling',
+    component: SchedulingComponent,
+    title: 'Scheduling',
+    canActivate: [authManagerGuard], // optional: only logged-in users can see it
+ }
 ];

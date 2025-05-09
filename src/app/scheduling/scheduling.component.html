@@ -1,0 +1,64 @@
+
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            
+            <div className="flex items-center">
+              <label for="description" class="form-label">Employee</label> <!-- pull employee info from database -->
+              <span className="ml-2 text-sm text-gray-500">Current Account</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+     
+      <main className="flex-1 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+         
+          <div className="flex justify-between items-center mb-6">
+            <button className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+              Edit Schedule
+            </button>
+            
+            <div className="flex items-center space-x-2">
+              <span className="text-gray-700">Employee</span>
+              <input
+                type="text"
+                className="border border-gray-300 rounded-md px-3 py-2"
+                placeholder="Search employee..."
+              />
+              <button className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                Search
+              </button>
+            </div>
+          </div>
+     <table class="calendar">
+  <thead>
+    <tr>     
+@for (day of days; track day) {
+<th>{{ day }}</th>
+} @empty {
+<th>There are no items.</th>}
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      @for (timeSlots of timeSlots; track timeSlots){
+      <td> {{timeSlots}}</td> 
+      }
+      @empty {
+        <td>There are no items. </td>
+      } 
+      
+    </tr>    
+  </tbody>
+</table>      
+        </div>
+      </main>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+          </div>
+        </div>
+    </div>
+   
