@@ -2,3 +2,20 @@ h1{
     text-align: center;
     font-weight: bold;
 }
+/* 
+.hardwareBuilding {
+   display:block;
+   margin-left:auto;
+   margin-right:auto;
+    width: 30%;
+}
+
+.toolShelf{
+    display:block;
+   margin-left:auto;
+   margin-right:auto;
+    width: 30%;
+} */
+.row{
+    padding-left: 15%;
+}

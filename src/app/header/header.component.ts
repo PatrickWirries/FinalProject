@@ -26,4 +26,8 @@ loggedIn(){
   return this.auth.loggedIn()
 }
 
+isManager(){
+  return this.auth.isManager()
+}
+
 }

@@ -23,6 +23,7 @@ export class LoginComponent {
 onSubmit(){
 console.log('Login'); //Possibly remove this line -> Dev tool
 this.auth.login(this.email, this.password); //Needs email and password from form
+
 }
 
 forgotPassword(){

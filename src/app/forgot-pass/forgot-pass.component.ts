@@ -17,8 +17,6 @@ export class ForgotPassComponent {
 private auth = inject(AuthService);
 private router = inject(Router);
 email = '';
-password1 = '';
-password2 = '';
 
 async onSubmit(){
   console.log('Forgot Pass'); //Developer Tool
@@ -35,13 +33,13 @@ else{
 
 
 resetPassword(){
-  if (this.password1 == this.password2){
+  if (this.email !== null){
     /*
     Normally would have the following function call, but since this project uses fictional emails, we have no way of resetting the password on Angulars side of things without
     already being logged in as the user or "knowing" what the old password is 
     */
   
-    //this.auth.resetPassword(this.password1);
+    this.auth.resetPassword(this.email);
     alert('Password Reset sent to your email!');
   }
   else{
