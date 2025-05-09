@@ -38,6 +38,6 @@ export const routes: Routes = [
     path: 'contacts',
     component: ContactsComponent,
     title: 'Contacts',
-    canActivate: [authGuard], // optional: only logged-in users can see it
+    canActivate: [authManagerGuard], // optional: only logged-in users can see it
   },
 ];

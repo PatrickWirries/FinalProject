@@ -54,11 +54,12 @@ localStorage.setItem('token', 'true');
 
 //Route the user to the dashboard if the user successfully logs in
   this.router.navigate(['/dashboard']);
-}
+  }
 
   //If login fails
   catch (err){
     console.error('Login failed:', err);
+    alert('Invalid Email or password');
   }
 }
 
@@ -85,8 +86,8 @@ return !querySnapshot.empty;
 //Reset password by sending the 'password reset link'
 resetPassword(email: string){
   sendPasswordResetEmail(this.firebaseAuth, email)
-    .then(() => alert('Password reset link sent!'))
-    .catch(err => alert('Error sending reset link: ' + err.message));
+    .then(() => alert('Password reset link sent to your email!'))
+    .catch(err => alert('Error sending reset link sent to your email: ' + err.message));
 }
 
 //Return true if the current user is valid via local storage token
